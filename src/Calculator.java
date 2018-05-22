@@ -2,23 +2,26 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Rom on 21.05.2018.
- */
 public class Calculator {
     public static void main(String[] args) {
         String expression;
+
+        System.out.println("*****Calculator*****");
+        System.out.print("Enter expression (zero for exit): ");
         do {
-            System.out.print("Enter expression: ");
             expression = inputString();
-            System.out.printf("Result %f\n", calc(expression));
+            System.out.printf("Result: %f\n", calc(expression));
+            System.out.print("Enter expression: ");
         } while (!expression.equals("0"));
     }
+
+
     public static String inputString() {
         Scanner scan = new Scanner(System.in);
-        String exp = scan.nextLine();
-        return exp;
+        return scan.nextLine();
+
     }
+
     public static double calc(String exp){
         String reg_exp_digital   = "[0-9]+";
         String reg_exp_operation = "[\\*\\/\\+\\-%^]";
@@ -59,7 +62,6 @@ public class Calculator {
             case "^": return Math.pow(a, b);
             default:  System.err.printf("Неверная входная строка %s", opp);
                 return -1;
-
         }
     }
 }
