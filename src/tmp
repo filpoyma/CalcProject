@@ -1,0 +1,55 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Created by Rom on 21.05.2018.
+ */
+public class Calculator {
+
+    public static double act(double a, double b, String opp){
+        switch (opp)
+        {
+            case "+": return a + b;
+            case "-": return a - b;
+            case "*": return a * b;
+            case "/": return a / b;
+            case "%": return a % b;
+            case "^": return Math.pow(a, b);
+            default: {System.out.println("Неверная входная строка '{match.Value}'"); return 0;}
+        }
+    }
+
+
+    public static void main(String[] args) {
+        int i                           = 0;
+        String reg_expression_digital   = "[0-9]+";
+        String reg_expression_operation = "[\\*\\/\\+\\-%^]";
+        String expression               = "6^8888";
+        double result                   = 0;
+        expression                      = expression.replaceAll("\\s", "");
+
+        Pattern digital_pattern = Pattern.compile(reg_expression_digital);
+        Pattern operation_pattern = Pattern.compile(reg_expression_operation);
+        Matcher digital_matcher = digital_pattern.matcher(expression);
+        Matcher operation_matcher = operation_pattern.matcher(expression);
+
+        while (digital_matcher.find()) i++;
+        double[] digit = new double[i];
+        String[] oper = new String[i - 1];
+        digital_matcher.reset();
+
+        for (i = 0; digital_matcher.find(); i++) {
+            digit[i] = Double.parseDouble(digital_matcher.group());
+            System.out.println(digit[i]);
+        }
+        for (i = 0; operation_matcher.find(); i++) {
+            oper[i] = operation_matcher.group();
+            System.out.println(oper[i]);
+            result = act(digit[i], digit[i + 1], oper[i]);
+            digit[i+1] = result;
+        }
+        System.out.println(result);
+
+    }
+
+}
