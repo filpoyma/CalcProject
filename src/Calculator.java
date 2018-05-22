@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 public class Calculator {
     public static void main(String[] args) {
         String expression;
-
         System.out.println("*****Calculator*****");
         System.out.print("Enter expression (zero for exit): ");
         do {
@@ -61,7 +60,7 @@ public class Calculator {
             case "%": return a % b;
             case "^": return Math.pow(a, b);
             default:  System.err.printf("Неверная входная строка %s", opp);
-                return -1;
+            return -1;
         }
     }
 }
