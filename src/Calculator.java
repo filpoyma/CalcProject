@@ -7,12 +7,13 @@ import java.util.regex.Pattern;
  */
 public class Calculator {
     public static void main(String[] args) {
-
-        System.out.print("Enter expression: ");
-        String expression = inputString();
-        System.out.printf("Result %f", calc(expression));
+        String expression;
+        do {
+            System.out.print("Enter expression: ");
+            expression = inputString();
+            System.out.printf("Result %f\n", calc(expression));
+        } while (!expression.equals("0"));
     }
-
     public static String inputString() {
         Scanner scan = new Scanner(System.in);
         String exp = scan.nextLine();
@@ -31,8 +32,8 @@ public class Calculator {
         while (dig_matcher.find()) digit_counter++;
         double[] digit = new double[digit_counter];
         String[] oper = new String[digit_counter - 1];
-        dig_matcher.reset();
 
+        dig_matcher.reset();
         for (int i = 0; dig_matcher.find(); i++) {
             digit[i] = Double.parseDouble(dig_matcher.group());
             //System.out.println(digit[i]);
@@ -43,7 +44,6 @@ public class Calculator {
             result = act(digit[i], digit[i + 1], oper[i]);
             digit[i+1] = result;
             //System.out.println(oper[i]);
-
         }
         return result;
     }
