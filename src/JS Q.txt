@@ -4,11 +4,11 @@ function ask(question, yes, no) {
   }
 
 function showOk() {
-  console.log( "Вы согласились." );
+  console.log( "you agree" );
 }
 
 function showCancel() {
-  console.log( "Вы отменили выполнение." );
+  console.log( "you canceled" );
 }
 
 
